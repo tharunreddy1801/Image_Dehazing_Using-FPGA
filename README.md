@@ -64,7 +64,7 @@ This project implements a **hardware-accelerated real-time image dehazing pipeli
 
 | Original Image | Dehazed Output |
 |----------------|----------------|
-| ![Hazy](samples/hazy.png) | ![Clear](samples/dehazed.png) |
+| ![Hazy](VerilogCodes/Simulation/canyon_512.bmp) | ![Clear](samples/dehazed.png) |
 
 *Test images were streamed via AXI interface and processed in real time on Zynq FPGA.*
 
