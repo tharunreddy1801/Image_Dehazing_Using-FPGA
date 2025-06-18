@@ -1,6 +1,6 @@
 # 🌫️ Real-Time Accelerated Image Dehazing Using FPGA
 
-![License](https://img.shields.io/badge/license-MIT-blue.svg) ![HDL](https://img.shields.io/badge/HDL-Verilog-informational) ![Toolchain](https://img.shields.io/badge/Tools-Vivado%20%7C%20Vitis%20%7C%20MATLAB%20%7C%20Python-blue)
+![License](https://img.shields.io/badge/license-MIT-blue.svg) ![HDL](https://img.shields.io/badge/HDL-Verilog-informational) ![Toolchain](https://img.shields.io/badge/Tools-Vivado%20%7C%20Vitis%20%7C%20MATLAB-blue)
 
 ## 🚀 Overview
 
@@ -48,7 +48,8 @@ This project implements a **hardware-accelerated real-time image dehazing pipeli
 
 ## 📁 Repository Structure
 
-**Image_Dehazing_Using-FPGA**/
+**Image_Dehazing_Using-FPGA**
+```bash
 │
 ├── MATLAB/              # MATLAB scripts and testbench
 ├── Python/              # Python utilities for image testing
@@ -56,7 +57,7 @@ This project implements a **hardware-accelerated real-time image dehazing pipeli
 ├── VerilogModules/      # HDL hierarchy and IP-wrapped top modules
 ├── LICENSE              # MIT License
 └── README.md            # You're reading it!
-
+```
 ---
 
 ## 🖼️ Demo
@@ -71,7 +72,7 @@ This project implements a **hardware-accelerated real-time image dehazing pipeli
 
 ## 📈 Performance Highlights
 
-- ✅ **~60 FPS** on VGA resolution (640x480) using pipelined Verilog
+- ✅ **~60 FPS** on VGA resolution (512x512) using pipelined Verilog
 - ⏱️ **Low latency:** ~16ms per frame
 - 💡 **Parallelized modules** for speed and power efficiency
 - 🔌 Ready for integration with **camera modules and embedded SoCs**
@@ -86,12 +87,9 @@ This project implements a **hardware-accelerated real-time image dehazing pipeli
 
 ---
 
-## 👨‍💻 Authors
+## 👨‍💻 Author
 
 - **Yennam Sai Tharun Reddy**
-- Rohan Muthyala
-- Shaik Mohammed Ayub
-- K. Sridurga Kumar  
 *(Dept. of ECE, Vasavi College of Engineering)*
 
 ---
