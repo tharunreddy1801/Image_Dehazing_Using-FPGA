@@ -223,14 +223,14 @@ Key Steps:
 ---
 
 ## License
-**MIT License**
-You are free to fork, contribute, and build upon this project.
+- **MIT License**
+  *You are free to fork, contribute, and build upon this project.*
 
 ---
 
 ## ABOUT
-**Hardware Accelerator Design | February–July 2025**
-*Designed a complete image dehazing pipeline based on the Dark Channel Prior algorithm using pipelined Verilog modules, optimized for fixed-point hardware on FPGA.*
+- **Hardware Accelerator Design | February–July 2025**
+  *Designed a complete image dehazing pipeline based on the Dark Channel Prior algorithm using pipelined Verilog modules, optimized for fixed-point hardware on FPGA.*
 
 ---
 
