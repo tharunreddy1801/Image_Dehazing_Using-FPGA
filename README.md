@@ -197,7 +197,7 @@ Key Steps:
 
 | Original Image | Dehazed Output |
 |----------------|----------------|
-| ![Hazy](Verilog/sim/canyon_512.bmp) | ![Output](Verilog/sim/output.bmp) |
+| ![Hazy](Verilog/sim/canyon_512.bmp) | ![Output](Verilog/sim/dehaze.bmp) |
 
 *Test images were streamed via AXI interface and processed in real time on Zynq FPGA.*
 
