@@ -1,7 +1,7 @@
 `timescale 1ns/1ps
 
 module TE_TB;
-    reg        clk,
+    reg        clk;
     reg        rst;
     
     reg [23:0] input_pixel;
