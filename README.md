@@ -224,20 +224,20 @@ Key Steps:
 
 ## License
 - **MIT License**
-  *You are free to fork, contribute, and build upon this project.*
+    - *You are free to fork, contribute, and build upon this project.*
 
 ---
 
 ## ABOUT
 - **Hardware Accelerator Design | February–July 2025**
-  *Designed a complete image dehazing pipeline based on the Dark Channel Prior algorithm using pipelined Verilog modules, optimized for fixed-point hardware on FPGA.*
+     - *Designed a complete image dehazing pipeline based on the Dark Channel Prior algorithm using pipelined Verilog modules, optimized for fixed-point hardware on FPGA.*
 
 ---
 
 ## 👨‍💻 Author
 
 - **Yennam Sai Tharun Reddy**
-*(Dept. of ECE, Vasavi College of Engineering)*
+   - *(Dept. of ECE, Vasavi College of Engineering)*
 
 ---
 
