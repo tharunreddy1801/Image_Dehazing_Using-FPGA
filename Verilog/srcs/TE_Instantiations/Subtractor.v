@@ -1,23 +1,12 @@
-//module Subtractor(
-//    input [15:0] a,
-//    output [15:0] diff
-//);
-//    parameter [16:0] One = 17'd65536;
-//    parameter [15:0] T0 = 16'd16383;
-    
-//    assign diff = (a < 16'd49152) ? One - a : T0;
-//endmodule
-
 module Subtractor(
-    input [15:0]  a,
-    output [15:0] diff
+    input  [15:0] in,  // OMEGA * min(Pc / Ac) ; c ∈ {R, G, B}
+    
+    output [15:0] diff // Final Transmission value
 );
-    parameter signed [16:0] One = 17'd65535; // 1.0 in Q0.16
-    parameter [15:0] T0_min = 16'd16384;     // 0.25 in Q0.16
     
-    wire signed [16:0] temp_diff = One - {1'b0, a};
+    parameter [16:0] ONE = 17'd65536; // 1.0 in Q0.17 format
+    parameter [15:0] T0  = 16'd16384; // Lower bound for transmission is 0.25 in Q0.16 format
     
-    assign diff = (temp_diff <= $signed({1'b0, T0_min})) ? T0_min :
-                  temp_diff[15:0];
+    assign diff = ((ONE - in) < T0) ?  T0 : One - in;
     
 endmodule
