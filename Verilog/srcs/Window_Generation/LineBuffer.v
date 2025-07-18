@@ -14,7 +14,7 @@ parameter Buffer_Size = 512;
 reg [$clog2(Buffer_Size):0] wr_counter;
 reg [$clog2(Buffer_Size):0] rd_counter;
 
-reg [23:0] line_buffer_mem [0 : Buffer_Size - 1];
+reg [23:0] line_buffer_mem [0:Buffer_Size - 1];
 
 reg [$clog2(Buffer_Size):0] PixelCounter;
 
