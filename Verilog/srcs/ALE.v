@@ -68,8 +68,8 @@ module ALE(
     wire [7:0] Dark_channel;
     
     // Pipeline Registers (Stage 2)
-    reg [7:0]   Dark_channel_P;
-    reg [7:0]   AR_P, AG_P, AB_P;
+    reg [7:0]  Dark_channel_P;
+    reg [7:0]  AR_P, AG_P, AB_P;
     reg [15:0] Inv_AR_P, Inv_AG_P, Inv_AB_P;
     
     wire [7:0] Dark_channel_Red, Dark_channel_Green, Dark_channel_Blue;
@@ -148,6 +148,7 @@ module ALE(
         .input_pixel_7(input_pixel_7[23:16]),
         .input_pixel_8(input_pixel_8[23:16]),
         .input_pixel_9(input_pixel_9[23:16]),
+        
         .minimum_pixel(minimum_red)
     );
     
@@ -161,6 +162,7 @@ module ALE(
         .input_pixel_7(input_pixel_7[15:8]),
         .input_pixel_8(input_pixel_8[15:8]),
         .input_pixel_9(input_pixel_9[15:8]),
+        
         .minimum_pixel(minimum_green)
     );
     
@@ -174,28 +176,35 @@ module ALE(
         .input_pixel_7(input_pixel_7[7:0]),
         .input_pixel_8(input_pixel_8[7:0]),
         .input_pixel_9(input_pixel_9[7:0]),
+        
         .minimum_pixel(minimum_blue)
     );
     
-    // Calculate minimum among the three channels to get dark channel
+    // Calculate minimum among the three channels to get Dark Channel
     ALE_Minimum_3 Dark_Channel(
-        .R(minimum_red_P), .G(minimum_green_P), .B(minimum_blue_P),
+        .R(minimum_red_P),
+        .G(minimum_green_P), 
+        .B(minimum_blue_P),
+        
         .minimum(Dark_channel)
     );
     
-    // Look-Up Tables to output the reciprocal of the atmospheric light value in Q0.16 format
+    // Look-Up Tables to output the reciprocal of the Atmospheric Light value in Q0.16 format
     ATM_LUT Inverse_Red(
         .in_val(Dark_channel_Red),
+        
         .out_val(LUT_Inv_AR)
     );
     
     ATM_LUT Inverse_Green(
         .in_val(Dark_channel_Green),
+        
         .out_val(LUT_Inv_AG)
     );
     
     ATM_LUT Inverse_Blue(
         .in_val(Dark_channel_Blue),
+        
         .out_val(LUT_Inv_AB)
     );
     
