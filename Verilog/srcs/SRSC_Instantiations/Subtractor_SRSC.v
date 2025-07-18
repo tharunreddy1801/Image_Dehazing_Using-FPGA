@@ -7,6 +7,7 @@ module Subtractor_SRSC(
 );
 
     assign diff = (Ic > Ac) ? (Ic - Ac) : (Ac - Ic);
+    
     assign add_or_sub = (Ic > Ac) ? 1 : 0;
     
 endmodule
