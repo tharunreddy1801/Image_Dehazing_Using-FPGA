@@ -219,6 +219,13 @@ Key Steps:
 - **IEEE TCSVT Paper**  
   *"Hardware Implementation of a Fast and Efficient Haze Removal Method"*  
   *Yeu-Horng Shiau, Hung-Yu Yang, Pei-Yin Chen, Member, IEEE, and Ya-Zhu Chuang*
+  
+- **Image Processing on Zynq**
+   *Vipin Kizheppatt - https://www.youtube.com/@Vipinkmenon*
+
+- **FPGA Image Processing**
+   *Udemy Course by Hui Hu*
+
 
 ---
 
