@@ -1,4 +1,5 @@
 // Transmission Estimation, Scene Recovery and Saturation Correction Module
+`define Image_Size (512 * 512)
 module TE_and_SRSC(
     input        clk,
     input        rst,
@@ -18,9 +19,30 @@ module TE_and_SRSC(
     input [15:0] Inv_AR, Inv_AG, Inv_AB,
 
     output [7:0] J_R, J_G, J_B,
-    output       output_valid
+    output       output_valid,
+    
+    output       done
 );
 
+    reg [17:0] pixel_counter;
+    reg        done_reg;
+    
+    // Keep track of the number of pixels processed through the module
+    always @(posedge clk or posedge rst) begin
+        if (rst) begin
+            pixel_counter <= 0;
+            done_reg <= 0;
+        end
+        else if (input_is_valid && !done_reg) begin
+            pixel_counter <= pixel_counter + 1;
+            if (pixel_counter == (`Image_Size - 1)) begin
+                done_reg <= 1; // All pixels have been processed through the TE_SRSC module
+            end
+        end
+    end
+    
+    assign done = done_reg;
+    
     //==========================================================================
     // INTERNAL REGISTERS AND WIRES
     //==========================================================================
@@ -412,7 +434,7 @@ module TE_and_SRSC(
     // Detect the type of edges
     ED_Top Edge_detection(
         .output_pixel_1(in1), .output_pixel_2(in2), .output_pixel_3(in3),
-        .output_pixel_4(in4), .output_pixel_5(in5), .output_pixel_6(in6), 
+        .output_pixel_4(in4),                       .output_pixel_6(in6), 
         .output_pixel_7(in7), .output_pixel_8(in8), .output_pixel_9(in9),
         
         .ED1_out(ed1), .ED2_out(ed2), .ED3_out(ed3)
@@ -744,32 +766,32 @@ module TE_and_SRSC(
     // LOOK-UP TABLES TO COMPUTE Ac ^ β AND J ^ (1 - β) (β = 0.2/0.3)
     //==========================================================================
     
-    LUT_02 A_R_Correction(
+    LUT_03 A_R_Correction(
         .x(A_R_reg2),
         .y_q8_8(A_R_Corrected)
     );
     
-    LUT_02 A_G_Correction(
+    LUT_03 A_G_Correction(
         .x(A_G_reg2),
         .y_q8_8(A_G_Corrected)
     );
     
-    LUT_02 A_B_Correction(
+    LUT_03 A_B_Correction(
         .x(A_B_reg2),
         .y_q8_8(A_B_Corrected)
     );
     
-    LUT_08 J_R_Correction(
+    LUT_07 J_R_Correction(
         .x(Sum_Red),
         .y_q8_8(J_R_Corrected)
     );
     
-    LUT_08 J_G_Correction(
+    LUT_07 J_G_Correction(
         .x(Sum_Green),
         .y_q8_8(J_G_Corrected)
     );
     
-    LUT_08 J_B_Correction(
+    LUT_07 J_B_Correction(
         .x(Sum_Blue),
         .y_q8_8(J_B_Corrected)
     );
