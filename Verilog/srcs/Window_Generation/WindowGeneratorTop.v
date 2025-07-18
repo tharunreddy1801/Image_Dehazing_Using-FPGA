@@ -20,7 +20,7 @@ module WindowGeneratorTop(
     wire [23:0] dlb_out_1,dlb_out_2,dlb_out_3;
     wire        dlb_out_valid;
     
-    Double_LineBuffer DLB(
+    Double_LineBuffer Double_LineBuffer(
         .clk(clk),
         .rst(rst),
         
