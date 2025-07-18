@@ -216,15 +216,16 @@ Key Steps:
   *"Single Image Haze Removal Using Dark Channel Prior."*  
   *IEEE Transactions on Pattern Analysis and Machine Intelligence (TPAMI), 2011.*
 
-- **IEEE TCSVT Paper**  
+- **IEEE TCSVT Paper**
   *"Hardware Implementation of a Fast and Efficient Haze Removal Method"*  
   *Yeu-Horng Shiau, Hung-Yu Yang, Pei-Yin Chen, Member, IEEE, and Ya-Zhu Chuang*
   
-- **Image Processing on Zynq**
+- **Image Processing on Zynq.**                                                        
   *Vipin Kizheppatt - https://www.youtube.com/@Vipinkmenon*
 
-- **FPGA Image Processing**
+- **FPGA Image Processing.**
   *Udemy Course by Hui Hu*
+
 
 
 ---
