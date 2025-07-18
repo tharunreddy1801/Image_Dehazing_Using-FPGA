@@ -24,19 +24,12 @@ module ALE(
     output [15:0] Inv_A_G,
     output [15:0] Inv_A_B,          // Inverse Atmospheric Light Values
     
-    output        output_is_valid,  // Output data valid signal
     output        done              // Entire image has been processed
 );
 
     reg [17:0] pixel_counter;
     reg        done_reg;
-    
-    // Minimum of 9 - R/G/B channels (output wires)
-    wire [7:0] minimum_red, minimum_green, minimum_blue;
-    
-    // Pipeline Registers (Stage 1)
-    reg [7:0] minimum_red_P, minimum_green_P, minimum_blue_P;
-    
+
     // Keep track of the number of pixels processed through the module
     always @(posedge clk or posedge rst) begin
         if (rst) begin
@@ -50,6 +43,12 @@ module ALE(
             end
         end
     end
+    
+    // Minimum of 9 - R/G/B channels (output wires)
+    wire [7:0] minimum_red, minimum_green, minimum_blue;
+    
+    // Pipeline Registers (Stage 1)
+    reg [7:0] minimum_red_P, minimum_green_P, minimum_blue_P;
     
     always @(posedge clk) begin
         if(rst) begin
@@ -137,7 +136,7 @@ module ALE(
 // BLOCK INSTANCES
 /////////////////////////////////////////////////////////////////////////////////
 
-    // Find the minimum of each color channel inputs
+    // Find the minimum of each of the color channel inputs
     ALE_Minimum_9 Min_Red (
         .input_pixel_1(input_pixel_1[23:16]),
         .input_pixel_2(input_pixel_2[23:16]),
