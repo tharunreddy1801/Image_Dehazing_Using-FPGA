@@ -5,7 +5,7 @@ module Subtractor(
 );
     
     parameter [16:0] ONE = 17'd65536; // 1.0 in Q0.17 format
-    parameter [15:0] T0  = 16'd16384; // Lower bound for transmission is 0.25 in Q0.16 format
+    parameter [15:0] T0  = 16'd18022; // Lower bound for transmission - 0.275 in Q0.16 format
     
     assign diff = ((ONE - in) < T0) ?  T0 : ONE - in;
     
