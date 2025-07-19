@@ -73,9 +73,9 @@ module ALE(
     
     wire [7:0] Dark_channel_Red, Dark_channel_Green, Dark_channel_Blue;
     
-    assign Dark_channel_Red = (Dark_channel > Dark_channel_P) ? (minimum_red_P * 7) >> 3 : AR_P;
-    assign Dark_channel_Green = (Dark_channel > Dark_channel_P) ? (minimum_green_P * 7) >> 3 : AG_P;
-    assign Dark_channel_Blue = (Dark_channel > Dark_channel_P) ? (minimum_blue_P * 7) >> 3 : AB_P;
+    assign Dark_channel_Red = (Dark_channel > Dark_channel_P) ? minimum_red_P : AR_P;
+    assign Dark_channel_Green = (Dark_channel > Dark_channel_P) ? minimum_green_P : AG_P;
+    assign Dark_channel_Blue = (Dark_channel > Dark_channel_P) ? minimum_blue_P : AB_P;
     
     // LUT outputs
     wire [15:0] LUT_Inv_AR, LUT_Inv_AG, LUT_Inv_AB;
