@@ -6,7 +6,7 @@ module Multiplier(
 
     // Constants in Q0.16 format
     parameter [15:0] OMEGA      = 16'd61440;   // 0.9375 in Q0.16
-    parameter [15:0] MAX_OUTPUT = 16'd49152;   // 0.75 in Q0.16
+    parameter [15:0] MAX_OUTPUT = 16'd47415;   // (1 - 0.275) = 0.725 in Q0.16
 
     // Unscaled result is in Q8.16 format
     wire [23:0] unscaled_product = Ac_Inv * Pc;
