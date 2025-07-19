@@ -1,6 +1,6 @@
 # 🌫️ Real-Time Accelerated Image Dehazing Using FPGA
 
-![License](https://img.shields.io/badge/license-MIT-blue.svg) ![HDL](https://img.shields.io/badge/HDL-Verilog-informational) ![Toolchain](https://img.shields.io/badge/Tools-Vivado%20%7C%20Vitis%20%7C%20MATLAB-blue)
+ ![License: BSD-3-Clause](https://img.shields.io/badge/License-BSD--3--Clause-00008B.svg)![HDL](https://img.shields.io/badge/HDL-Verilog-informational) ![Toolchain](https://img.shields.io/badge/Tools-Vivado%20%7C%20Vitis%20%7C%20MATLAB-blue)
 
 ## 🚀 Overview
 
