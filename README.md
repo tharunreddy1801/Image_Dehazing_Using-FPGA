@@ -183,7 +183,7 @@ Key Steps:
 
 **Image_Dehazing_Using-FPGA**
 ```bash
-│
+├── ip codes/            # ip codes of top modules to generate IP
 ├── MATLAB/              # MATLAB scripts and testbench
 ├── Python/              # Python utilities for image testing
 ├── VerilogCodes/        # Complete RTL modules for each dehazing block
@@ -193,11 +193,13 @@ Key Steps:
 ```
 ---
 
-## 🖼️ Demo
+## 🖼️ Examples
 
 | Original Image | Dehazed Output |
 |----------------|----------------|
-| ![Hazy](Verilog/sim/canyon_512.bmp) | ![Output](Verilog/sim/dehaze.bmp) |
+| ![Hazy](Verilog/sim/canyon_512.bmp) | ![Output](Verilog/sim/dehaze1.bmp) |
+| ![Hazy](Verilog/sim/haze2.bmp) | ![Output](Verilog/sim/dehaze2.bmp) |
+| ![Hazy](Verilog/sim/haze3.bmp) | ![Output](Verilog/sim/dehaze3.bmp) |
 
 *Test images were streamed via AXI interface and processed in real time on Zynq FPGA.*
 
