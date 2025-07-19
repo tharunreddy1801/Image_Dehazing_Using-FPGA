@@ -137,26 +137,43 @@ endmodule
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // Clock Gating Cell for power saving
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-module Clock_Gating_Cell(
-    input  clk,
-    input  clk_enable,
-    input  rstn,
+// module Clock_Gating_Cell(
+//     input  clk,
+//     input  clk_enable,
+//     input  rstn,
     
-    output clk_gated
-);
+//     output clk_gated
+// );
     
-    reg latch;
+//     reg latch;
     
-    always @(posedge clk) begin
-        if (rstn)
-            latch <= 1'b0;
-        else
-            latch <= clk_enable;
-    end
+//     always @(posedge clk) begin
+//         if (rstn)
+//             latch <= 1'b0;
+//         else
+//             latch <= clk_enable;
+//     end
 
-    assign clk_gated = latch & clk;
+//     assign clk_gated = latch & clk;
+
+// endmodule
+
+module Clock_Gating_Cell (
+    input clk,        // Input clock
+    input clk_enable,    // Enable signal for clock gating
+    input rstn,          // Active-low reset
+    output clk_gated       // Output gated clock
+);
+// try to use asynchronous reset assertion and deassertion make sure to be synchronouse of main clock. so here rstn usage is useless.
+    // BUFGCE for clock enable functionality (automatic clock gating)
+    BUFGCE u_bufgce (
+        .I(clk),       // Input clock
+        .CE(clk_enable),  // Clock enable signal to gate the clock
+        .O(clk_gated)       // Output gated clock
+    );
 
 endmodule
+
 
 
 
