@@ -2,7 +2,7 @@
 
  ![License: BSD-3-Clause](https://img.shields.io/badge/License-BSD--3--Clause-00008B.svg)![HDL](https://img.shields.io/badge/HDL-Verilog-informational) ![Toolchain](https://img.shields.io/badge/Tools-Vivado%20%7C%20Vitis%20%7C%20MATLAB-blue)
 
-## 🚀 Overview
+##  Overview
 
 This project presents a hardware-accelerated, real-time image dehazing pipeline, fully implemented in Verilog and synthesized on a Xilinx ZedBoard FPGA (Zynq-7000). The goal is to achieve high-performance image dehazing using a custom pipelined architecture based on the Dark Channel Prior and Scene Radiance Recovery methods, optimized for fixed-point arithmetic and stream-based throughput. 
 
@@ -10,13 +10,13 @@ This project presents a hardware-accelerated, real-time image dehazing pipeline,
 
 
 ---
-## 🎯 Motivation
+##  Motivation
 
   Hazy or foggy images reduce visibility and impair the performance of vision-based systems in applications such as:
-- Autonomous driving 🚗
-- Aerial and satellite imaging 🛰️
-- Surveillance systems 🔍
-- Remote sensing in adverse weather conditions 🌧️
+- Autonomous driving 
+- Aerial and satellite imaging 
+- Surveillance systems 
+- Remote sensing in adverse weather conditions 
   
   Real-time haze removal is computationally expensive on general-purpose CPUs. To address this, the design uses a custom FPGA-based hardware accelerator to:
 - Achieve parallelism
@@ -26,7 +26,7 @@ This project presents a hardware-accelerated, real-time image dehazing pipeline,
   
 ---
 
-## 🎯 Objectives
+##  Objectives
 
 - ⚡ **Accelerate DCP-based dehazing** using FPGA for real-time performance.
 - 🔁 **Modular Verilog Implementation** of each processing stage: dark channel, atmospheric light, transmission map, and restoration.
@@ -36,7 +36,7 @@ This project presents a hardware-accelerated, real-time image dehazing pipeline,
 
 ---
 
-## 🧠 Key Features
+##  Key Features
 
 | Module | Description |
 |--------|-------------|
@@ -48,7 +48,7 @@ This project presents a hardware-accelerated, real-time image dehazing pipeline,
 
 ---
 
-## 🧠 Algorithm Overview
+##  Algorithm Overview
 
 This project is inspired by the IEEE TCSVT paper:
 "Hardware Implementation of a Fast and Efficient Haze Removal Method"
@@ -160,7 +160,7 @@ Key Steps:
  - Processed dehazed image returned via UART
  
 ---
-## 📈 Results
+##  Results
 
  ### Visual Output:
 - ✅ Improved visibility in foggy regions
@@ -179,7 +179,7 @@ Key Steps:
 
 ---
 
-## 📁 Repository Structure
+##  Repository Structure
 
 **Image_Dehazing_Using-FPGA**
 ```bash
@@ -193,7 +193,7 @@ Key Steps:
 ```
 ---
 
-## 🖼️ Examples
+##  Examples
 
 | Original Image | Dehazed Output |
 |----------------|----------------|
@@ -205,7 +205,7 @@ Key Steps:
 
 ---
 
-## 📈 Future Work
+##  Future Work
 - Optimize fixed-point dynamic range
 - Add gamma correction and contrast enhancement
 - Real-time camera input
@@ -213,7 +213,7 @@ Key Steps:
 
 ---
 
-## 📚 References
+##  References
 - **He, Kaiming, Jian Sun, and Xiaoou Tang.**  
   *"Single Image Haze Removal Using Dark Channel Prior."*  
   *IEEE Transactions on Pattern Analysis and Machine Intelligence (TPAMI), 2011.*
@@ -244,14 +244,14 @@ Key Steps:
 
 ---
 
-## 👨‍💻 Author
+##  Author
 
 - **Yennam Sai Tharun Reddy**
    - *(Dept. of ECE, Vasavi College of Engineering)*
 
 ---
 
-## 📌 Keywords
+##  Keywords
 
 `FPGA` • `Real-Time Processing` • `Image Dehazing` • `Computer Vision` • `Dark Channel Prior` • `Verilog HDL` • `Embedded Vision` • `Zynq SoC` • `Hardware Acceleration` • `Vivado` • `Vitis` • `AXI Stream` • `Autonomous Systems`
 
