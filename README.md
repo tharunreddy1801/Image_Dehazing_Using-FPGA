@@ -6,7 +6,7 @@
 
 This project presents a hardware-accelerated, real-time image dehazing pipeline, fully implemented in Verilog and synthesized on a Xilinx ZedBoard FPGA (Zynq-7000). The goal is to achieve high-performance image dehazing using a custom pipelined architecture based on the Dark Channel Prior and Scene Radiance Recovery methods, optimized for fixed-point arithmetic and stream-based throughput. 
 
-✅ The pipeline receives BMP images via UART, processes them to remove haze, and returns the reconstructed haze-free image back to the host PC.
+ The pipeline receives BMP images via UART, processes them to remove haze, and returns the reconstructed haze-free image back to the host PC.
 
 
 ---
@@ -28,11 +28,11 @@ This project presents a hardware-accelerated, real-time image dehazing pipeline,
 
 ##  Objectives
 
-- ⚡ **Accelerate DCP-based dehazing** using FPGA for real-time performance.
-- 🔁 **Modular Verilog Implementation** of each processing stage: dark channel, atmospheric light, transmission map, and restoration.
-- 🔧 **Optimize for low-latency and energy efficiency** using pipelining and parallelism.
-- 🌐 Integrate with high-level tools like **MATLAB (HDL Coder)** and **Python** for simulation and visualization.
-- 💻 Enable **deployment on embedded platforms** (Zynq SoC) with **AXI-stream interface**.
+-  **Accelerate DCP-based dehazing** using FPGA for real-time performance.
+-  **Modular Verilog Implementation** of each processing stage: dark channel, atmospheric light, transmission map, and restoration.
+-  **Optimize for low-latency and energy efficiency** using pipelining and parallelism.
+-  Integrate with high-level tools like **MATLAB (HDL Coder)** and **Python** for simulation and visualization.
+-  Enable **deployment on embedded platforms** (Zynq SoC) with **AXI-stream interface**.
 
 ---
 
@@ -163,19 +163,19 @@ Key Steps:
 ##  Results
 
  ### Visual Output:
-- ✅ Improved visibility in foggy regions
-- ✅ Enhanced edges and depth perception
-- ✅ Preserved natural color tone and contrast
+-  Improved visibility in foggy regions
+-  Enhanced edges and depth perception
+-  Preserved natural color tone and contrast
 
 ---
 
 ## 🛠️ Tools & Technologies
 
-- 💻 **Xilinx Vivado 2023.2** – RTL Design, Synthesis , Simulation, Implementation
-- 💻 **ZedBoard FPGA (Zynq-7000)**
-- 🐍 **Python(Custom Python tools for image analysis)** – Pre/post-processing and                    visualization support
-- 📊 **MATLAB + HDL Coder** – Algorithm simulation, RTL generation
-- ⚙️ **Xilinx Vitis HLS** – Software integration, AXI Stream interface, deployment
+-  **Xilinx Vivado 2023.2** – RTL Design, Synthesis , Simulation, Implementation
+-  **ZedBoard FPGA (Zynq-7000)**
+-  **Python(Custom Python tools for image analysis)** – Pre/post-processing and                    visualization support
+-  **MATLAB + HDL Coder** – Algorithm simulation, RTL generation
+-  **Xilinx Vitis HLS** – Software integration, AXI Stream interface, deployment
 
 ---
 
