@@ -1,0 +1,40 @@
+{
+   "ActiveEmotionalView":"Default View",
+   "Default View_ScaleFactor":"0.753507",
+   "Default View_TopLeft":"-20,-417",
+   "ExpandedHierarchyInLayout":"",
+   "guistr":"# # String gsaved with Nlview 7.0r6  2020-01-29 bk=1.5227 VDI=41 GEI=36 GUI=JA:10.0 non-TLS
+#  -string -flagsOSRD
+preplace port DDR -pg 1 -lvl 4 -x 1870 -y -180 -defaultsOSRD
+preplace port FIXED_IO -pg 1 -lvl 4 -x 1870 -y -150 -defaultsOSRD
+preplace inst DCP_HazeRemoval_0 -pg 1 -lvl 2 -x 840 -y 10 -defaultsOSRD
+preplace inst processing_system7_0 -pg 1 -lvl 2 -x 840 -y 260 -defaultsOSRD
+preplace inst axi_dma_0 -pg 1 -lvl 1 -x 360 -y 240 -defaultsOSRD
+preplace inst ps7_0_axi_periph -pg 1 -lvl 3 -x 1310 -y 80 -defaultsOSRD
+preplace inst rst_ps7_0_100M -pg 1 -lvl 3 -x 1310 -y 280 -defaultsOSRD
+preplace inst xlconstant_0 -pg 1 -lvl 1 -x 360 -y 80 -defaultsOSRD
+preplace inst xlconcat_0 -pg 1 -lvl 2 -x 840 -y -130 -defaultsOSRD
+preplace inst axi_mem_intercon -pg 1 -lvl 1 -x 360 -y -140 -defaultsOSRD
+preplace inst system_ila_0 -pg 1 -lvl 3 -x 1310 -y -260 -defaultsOSRD
+preplace inst system_ila_1 -pg 1 -lvl 3 -x 1310 -y -90 -defaultsOSRD
+preplace netloc DCP_HazeRemoval_0_o_intr 1 1 2 630 110 1050
+preplace netloc axi_dma_0_s2mm_introut 1 1 1 600 -120n
+preplace netloc processing_system7_0_FCLK_CLK0 1 0 3 0 360 620 410 1100
+preplace netloc processing_system7_0_FCLK_RESET0_N 1 2 1 1110 260n
+preplace netloc rst_ps7_0_100M_peripheral_aresetn 1 0 4 10 10 580 120 1090J 390 1480
+preplace netloc xlconcat_0_dout 1 1 2 630 420 1060J
+preplace netloc xlconstant_0_dout 1 1 1 610 40n
+preplace netloc DCP_HazeRemoval_0_M_AXIS 1 0 3 30 20 570 100 1040
+preplace netloc axi_dma_0_M_AXIS_MM2S 1 1 2 560 -300 N
+preplace netloc axi_dma_0_M_AXI_MM2S 1 0 2 0 -300 550
+preplace netloc axi_dma_0_M_AXI_S2MM 1 0 2 30 -290 540
+preplace netloc axi_mem_intercon_M00_AXI 1 1 1 590 -140n
+preplace netloc processing_system7_0_DDR 1 2 2 1110J -160 1500J
+preplace netloc processing_system7_0_FIXED_IO 1 2 2 1080J 380 1500J
+preplace netloc processing_system7_0_M_AXI_GP0 1 2 1 1070J 20n
+preplace netloc ps7_0_axi_periph_M00_AXI 1 0 4 20 400 N 400 NJ 400 1490J
+levelinfo -pg 1 -20 360 840 1310 1870
+pagesize -pg 1 -db -bbox -sgen -20 -940 1980 570
+"
+}
+
