@@ -162,10 +162,25 @@ Key Steps:
 ---
 ##  Results
 
- ### Visual Output:
--  Improved visibility in foggy regions
--  Enhanced edges and depth perception
--  Preserved natural color tone and contrast
+### IP
+![WhatsApp Image 2025-07-31 at 22 08 50_58f753df](https://github.com/user-attachments/assets/ea12e7dc-6718-4d5a-b52d-d085f09464be)
+
+### Block Diagram
+![WhatsApp Image 2025-07-31 at 22 08 56_73e0e62b](https://github.com/user-attachments/assets/9a3ff47a-864d-423d-98ec-db742135a52b)
+
+### Utilization
+![WhatsApp Image 2025-07-31 at 22 09 01_6a11f9ce](https://github.com/user-attachments/assets/f7aaaa34-a333-4a8f-bb31-9a3f16c8b042)
+
+###  Example Results
+
+| Original Image | Dehazed Output |
+|----------------|----------------|
+| ![Hazy](Verilog/sim/canyon_512.bmp) | ![Output](Verilog/sim/dehaze1.bmp) |
+| ![Hazy](Verilog/sim/haze2.bmp) | ![Output](Verilog/sim/dehaze2.bmp) |
+| ![Hazy](Verilog/sim/haze3.bmp) | ![Output](Verilog/sim/dehaze3.bmp) |
+
+*Test images were streamed via AXI interface and processed in real time on Zynq FPGA.*
+
 
 ---
 
@@ -191,19 +206,6 @@ Key Steps:
 ├── LICENSE              # MIT License
 └── README.md            # You're reading it!
 ```
----
-
-##  Examples
-
-| Original Image | Dehazed Output |
-|----------------|----------------|
-| ![Hazy](Verilog/sim/canyon_512.bmp) | ![Output](Verilog/sim/dehaze1.bmp) |
-| ![Hazy](Verilog/sim/haze2.bmp) | ![Output](Verilog/sim/dehaze2.bmp) |
-| ![Hazy](Verilog/sim/haze3.bmp) | ![Output](Verilog/sim/dehaze3.bmp) |
-
-*Test images were streamed via AXI interface and processed in real time on Zynq FPGA.*
-
----
 
 ##  Future Work
 - Optimize fixed-point dynamic range
