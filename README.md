@@ -175,9 +175,9 @@ Key Steps:
 
 | Original Image | Dehazed Output |
 |----------------|----------------|
-| ![Hazy](Verilog/sim/canyon_512.bmp) | ![Output](Verilog/sim/dehaze1.bmp) |
-| ![Hazy](Verilog/sim/haze2.bmp) | ![Output](Verilog/sim/dehaze2.bmp) |
-| ![Hazy](Verilog/sim/haze3.bmp) | ![Output](Verilog/sim/dehaze3.bmp) |
+| ![Hazy](Vivado/verilog/sim/inputs/canyon_512.bmp) | ![Output](Vivado/verilog/sim/outputs/dehaze1.bmp) |
+| ![Hazy](Vivado/verilog/sim/inputs/haze2.bmp) | ![Output](Vivado/verilog/sim/outputs/dehaze2.bmp) |
+| ![Hazy](Vivado/verilog/sim/inputs/haze3.bmp) | ![Output](Vivado/verilog/sim/outputs/dehaze3.bmp) |
 
 *Test images were streamed via AXI interface and processed in real time on Zynq FPGA.*
 
@@ -201,8 +201,8 @@ Key Steps:
 ├── ip codes/            # ip codes of top modules to generate IP
 ├── MATLAB/              # MATLAB scripts and testbench
 ├── Python/              # Python utilities for image testing
-├── VerilogCodes/        # Complete RTL modules for each dehazing block
-├── VerilogModules/      # HDL hierarchy and IP-wrapped top modules
+├── Vitis/               # software application code for deploying on FPGA
+├── Vivado/              # Complete RTL modules for each dehazing block,HDL hierarchy and IP-wrapped top modules
 ├── LICENSE              # MIT License
 └── README.md            # You're reading it!
 ```
@@ -225,7 +225,7 @@ Key Steps:
   *Yeu-Horng Shiau, Hung-Yu Yang, Pei-Yin Chen, Member, IEEE, and Ya-Zhu Chuang*
   
 - **Image Processing on Zynq.**                                                        
-  *Vipin Kizheppatt - https://www.youtube.com/@Vipinkmenon*
+  *Vipin Kizheppatt - [Vipin-video](https://www.youtube.com/@Vipinkmenon)*
 
 - **FPGA Image Processing.**
   *Udemy Course by Hui Hu*
@@ -235,8 +235,8 @@ Key Steps:
 ---
 
 ## License
-- **MIT License**
-    - *You are free to fork, contribute, and build upon this project.*
+- **BSD 3-Clause License**
+    - *You are free to fork, contribute, and build upon this project under the terms of the [BSD 3-Clause License](https://opensource.org/licenses/BSD-3-Clause).*
 
 ---
 
