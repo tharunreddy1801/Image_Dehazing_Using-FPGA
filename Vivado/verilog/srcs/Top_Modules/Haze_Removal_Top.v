@@ -1,5 +1,5 @@
-module Haze_Removal_Top(
-
+// Top Module which connects Window Generator, Clock Gating Cell, ALE, TE and SRSC modules
+module DCP_HazeRemoval (
     // AXI4-Stream Global Signals
     input         ACLK,
     input         ARESETn,
@@ -17,13 +17,16 @@ module Haze_Removal_Top(
     output [31:0] M_AXIS_TDATA,
     output        M_AXIS_TVALID,
     output        M_AXIS_TLAST,
-    input         M_AXIS_TREADY
+    input         M_AXIS_TREADY,
+    
+    output reg    o_intr
 );
-    
-    wire ALE_clk, TE_SRSC_clk;
-    
+
     assign S_AXIS_TREADY = 1'b1; // Always ready to accept data
+    
     assign M_AXIS_TLAST = 1'b0; // Continuous stream
+
+    wire ALE_clk;
 
     // 3x3 Window of RGB pixels generated from Line Buffers
     wire [23:0] Pixel_00, Pixel_01, Pixel_02;
@@ -38,7 +41,7 @@ module Haze_Removal_Top(
         .clk(ACLK),
         .rst(~ARESETn),
         
-        .input_pixel(S_AXIS_TDATA),
+        .input_pixel(S_AXIS_TDATA[23:0]),
         .input_is_valid(S_AXIS_TVALID & S_AXIS_TREADY),
         
         .output_pixel_1(Pixel_00), .output_pixel_2(Pixel_01), .output_pixel_3(Pixel_02),
@@ -69,25 +72,25 @@ module Haze_Removal_Top(
         
         .done(ALE_done)
     );
-
-    // Final registers for ALE output
-    reg [7:0] Final_A_R, Final_A_G, Final_A_B;
-    reg [15:0] Final_Inv_AR, Final_Inv_AG, Final_Inv_AB;
+    
+    // Send interrupt signal to DMA when ALE processing is done
+    reg ALE_done_reg;
 
     always @(posedge ACLK or negedge ARESETn) begin
-        if (~ARESETn) begin
-            Final_A_R <= 0; Final_A_G <= 0; Final_A_B <= 0;
-            
-            Final_Inv_AR <= 0; Final_Inv_AG <= 0; Final_Inv_AB <= 0;
-        end else if (ALE_done) begin
-            Final_A_R <= A_R; Final_A_G <= A_G; Final_A_B <= A_B;
-            
-            Final_Inv_AR <= Inv_AR; Final_Inv_AG <= Inv_AG; Final_Inv_AB <= Inv_AB;
+        if (!ARESETn) begin
+            ALE_done_reg <= 0;
+            o_intr <= 0;
+        end else begin
+            ALE_done_reg <= ALE_done;
+            o_intr <= ALE_done & ~ALE_done_reg; // Rising edge detection
         end
     end
-
+    
+    // Output Signals
     wire [7:0] J_R, J_G, J_B;
     assign M_AXIS_TDATA = {8'h00, J_R, J_G, J_B};
+    
+    wire TE_SRSC_clk;
 
     wire TE_SRSC_enable = ALE_done & enable;
     wire TE_SRSC_done;
@@ -98,13 +101,13 @@ module Haze_Removal_Top(
         .rst(~ARESETn),
         
         .input_is_valid(window_valid & TE_SRSC_enable),
-        .in1(Pixel_00), .in2(Pixel_01), .in3(Pixel_02),
-        .in4(Pixel_10), .in5(Pixel_11), .in6(Pixel_12),
-        .in7(Pixel_20), .in8(Pixel_21), .in9(Pixel_22),
+        .input_pixel_1(Pixel_00), .input_pixel_2(Pixel_01), .input_pixel_3(Pixel_02),
+        .input_pixel_4(Pixel_10), .input_pixel_5(Pixel_11), .input_pixel_6(Pixel_12),
+        .input_pixel_7(Pixel_20), .input_pixel_8(Pixel_21), .input_pixel_9(Pixel_22),
         
-        .A_R(Final_A_R), .A_G(Final_A_G), .A_B(Final_A_B),
+        .A_R(A_R), .A_G(A_G), .A_B(A_B),
         
-        .Inv_AR(Final_Inv_AR), .Inv_AG(Final_Inv_AG), .Inv_AB(Final_Inv_AB),
+        .Inv_AR(Inv_AR), .Inv_AG(Inv_AG), .Inv_AB(Inv_AB),
         
         .J_R(J_R), .J_G(J_G), .J_B(J_B),
         .output_valid(M_AXIS_TVALID),
@@ -113,7 +116,7 @@ module Haze_Removal_Top(
     );
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////
-    // Clock Gating Cell Instantiations for ALE AND TE_SRSC
+    // Clock Gating Cells for ALE AND TE_SRSC
     ///////////////////////////////////////////////////////////////////////////////////////////////////
 
     Clock_Gating_Cell ALE_CGC(
@@ -135,8 +138,9 @@ module Haze_Removal_Top(
 endmodule
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-// Clock Gating Cell for power saving
+// Clock Gating Module to reduce Power Consumption
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+
 module Clock_Gating_Cell(
     input  clk,
     input  clk_enable,
@@ -157,7 +161,6 @@ module Clock_Gating_Cell(
     assign clk_gated = latch & clk;
 
 endmodule
-
 
 
 
