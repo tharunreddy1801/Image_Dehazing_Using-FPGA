@@ -1,10 +1,10 @@
 module LUT_03 (
-    input       [7:0] x,
+    input      [7:0]  x,
     output reg [15:0] y_q8_8
 );
 
     always @(*) begin
-        case (x)
+        casez (x)
             8'd0  : y_q8_8 = 16'd0;  // 0^0.3 ~= 0.000000
             8'd1  : y_q8_8 = 16'd256;  // 1^0.3 ~= 1.000000
             8'd2  : y_q8_8 = 16'd315;  // 2^0.3 ~= 1.231144
@@ -264,6 +264,7 @@ module LUT_03 (
             default: y_q8_8 = 16'd0;
         endcase
     end
+    
 endmodule
 
 module LUT_07 (
@@ -272,7 +273,7 @@ module LUT_07 (
 );
 
     always @(*) begin
-        case (x)
+        casez (x)
             8'd0  : y_q8_8 = 16'd0;  // 0^0.7 ~= 0.000000
             8'd1  : y_q8_8 = 16'd256;  // 1^0.7 ~= 1.000000
             8'd2  : y_q8_8 = 16'd416;  // 2^0.7 ~= 1.624505
@@ -532,6 +533,7 @@ module LUT_07 (
             default: y_q8_8 = 16'd0;
         endcase
     end
+    
 endmodule
 
 // Python Code to generate the Look-Up Table Verilog Modules
