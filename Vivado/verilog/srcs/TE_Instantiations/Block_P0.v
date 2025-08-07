@@ -1,13 +1,14 @@
-module block_P0(
-    input [7:0]  in1,
-    input [7:0]  in2,
-    input [7:0]  in3,
-    input [7:0]  in4,
-    input [7:0]  in5,
-    input [7:0]  in6,
-    input [7:0]  in7,
-    input [7:0]  in8,
-    input [7:0]  in9,
+// Mean Filter when no edges are detected
+module Block_P0 (
+    input  [7:0] in1,
+    input  [7:0] in2,
+    input  [7:0] in3,
+    input  [7:0] in4,
+    input  [7:0] in5,
+    input  [7:0] in6,
+    input  [7:0] in7,
+    input  [7:0] in8,
+    input  [7:0] in9,
     
     output [7:0] p0_result
 );
