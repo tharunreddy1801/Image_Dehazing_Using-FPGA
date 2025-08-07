@@ -1,10 +1,10 @@
 module ATM_LUT (
-    input [7:0]       in_val,
+    input      [7:0]  in_val,
     output reg [15:0] out_val
 );
 
 always @(*) begin
-    case (in_val)
+    casez (in_val)
         8'd  1: out_val = 16'd65535;  // 1/1 ? 1.00000000
         8'd  2: out_val = 16'd32768;  // 1/2 ? 0.50000000
         8'd  3: out_val = 16'd21845;  // 1/3 ? 0.33333333
