@@ -1,4 +1,4 @@
-module Double_LineBuffer(
+module Double_LineBuffer (
     input         clk,
     input         rst,
     
@@ -20,7 +20,7 @@ module Double_LineBuffer(
     
     assign output_is_valid = lb1_valid;
 
-    LineBuffer LineBuffer1(
+    LineBuffer LineBuffer1 (
         .clk(clk),
         .rst(rst),
         
@@ -31,7 +31,7 @@ module Double_LineBuffer(
         .output_is_valid(lb1_valid)
     );
     
-    LineBuffer LineBuffer2(
+    LineBuffer LineBuffer2 (
         .clk(clk),
         .rst(rst),
         
