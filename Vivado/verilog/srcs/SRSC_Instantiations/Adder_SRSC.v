@@ -1,4 +1,4 @@
-module Adder_SRSC(
+module Adder_SRSC (
     input [7:0]  Ac,
     input [7:0]  Ic,
     input [7:0]  Multiplier_out,
