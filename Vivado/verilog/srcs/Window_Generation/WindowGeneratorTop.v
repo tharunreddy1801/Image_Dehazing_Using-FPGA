@@ -1,4 +1,5 @@
-module WindowGeneratorTop(
+// Top module for the Window Generator which takes the pixel stream as input and outputs 3x3 windows of RGB Pixels
+module WindowGeneratorTop (
     input         clk,
     input         rst,
     
@@ -20,7 +21,7 @@ module WindowGeneratorTop(
     wire [23:0] dlb_out_1,dlb_out_2,dlb_out_3;
     wire        dlb_out_valid;
     
-    Double_LineBuffer Double_LineBuffer(
+    Double_LineBuffer Double_LineBuffer (
         .clk(clk),
         .rst(rst),
         
@@ -33,7 +34,7 @@ module WindowGeneratorTop(
         .output_is_valid(dlb_out_valid)
     );
     
-    WindowGenerator WindowGenerator(
+    WindowGenerator WindowGenerator (
         .clk(clk),
         .rst(rst),
             
