@@ -1,4 +1,4 @@
-module LineBuffer(
+module LineBuffer (
     input         clk,
     input         rst,
     
