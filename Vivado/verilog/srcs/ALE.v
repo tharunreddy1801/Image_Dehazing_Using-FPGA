@@ -1,11 +1,10 @@
 // Atmospheric Light Estimation Module
 `define Image_Size (512 * 512)
-module ALE(
+module ALE (
     input         clk,
     input         rst,
     
-    input         input_is_valid,   // Input data valid signal
-    
+    input         input_is_valid, // Input data valid signal
     input [23:0]  input_pixel_1,
     input [23:0]  input_pixel_2,
     input [23:0]  input_pixel_3,
@@ -14,17 +13,17 @@ module ALE(
     input [23:0]  input_pixel_6,
     input [23:0]  input_pixel_7,
     input [23:0]  input_pixel_8,
-    input [23:0]  input_pixel_9,    // 3x3 window input
+    input [23:0]  input_pixel_9,  // 3x3 window input
     
     output [7:0]  A_R,
     output [7:0]  A_G,
-    output [7:0]  A_B,              // Atmospheric Light Values
+    output [7:0]  A_B,            // Atmospheric Light Values
     
     output [15:0] Inv_A_R,
     output [15:0] Inv_A_G,
-    output [15:0] Inv_A_B,          // Inverse Atmospheric Light Values
+    output [15:0] Inv_A_B,        // Inverse Atmospheric Light Values(Q0.16)
     
-    output        done              // Entire image has been processed
+    output        done            // Signal to indicate entire image has been processed
 );
 
     reg [17:0] pixel_counter;
@@ -36,15 +35,15 @@ module ALE(
             pixel_counter <= 0;
             done_reg <= 0;
         end
-        else if (input_is_valid && !done_reg) begin
+        else if (Stage_2_valid) begin
             pixel_counter <= pixel_counter + 1;
             if (pixel_counter == (`Image_Size - 1)) begin
-                done_reg <= 1; // All pixels have been processed through the ALE module
+                done_reg <= 1;                            // All pixels have been processed through the ALE module
             end
         end
     end
     
-    // Minimum of 9 - R/G/B channels (output wires)
+    // Minimum of 9 - R/G/B channels
     wire [7:0] minimum_red, minimum_green, minimum_blue;
     
     // Pipeline Registers (Stage 1)
@@ -105,7 +104,7 @@ module ALE(
         end
     end
     
-    // Delay the valid signal by 2 clock cycles
+    // Delay the output valid signal by 2 clock cycles
     reg Stage_1_valid, Stage_2_valid;
     always @(posedge clk)
     begin
@@ -128,59 +127,39 @@ module ALE(
     assign Inv_A_G = Inv_AG_P;
     assign Inv_A_B = Inv_AB_P;
     
-    assign output_is_valid = Stage_2_valid;
-    
     assign done = done_reg;
 
-/////////////////////////////////////////////////////////////////////////////////
-// BLOCK INSTANCES
-/////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////
+    // BLOCK INSTANCES
+    /////////////////////////////////////////////////////////////////////////////////
 
     // Find the minimum of each of the color channel inputs
     ALE_Minimum_9 Min_Red (
-        .input_pixel_1(input_pixel_1[23:16]),
-        .input_pixel_2(input_pixel_2[23:16]),
-        .input_pixel_3(input_pixel_3[23:16]),
-        .input_pixel_4(input_pixel_4[23:16]),
-        .input_pixel_5(input_pixel_5[23:16]),
-        .input_pixel_6(input_pixel_6[23:16]),
-        .input_pixel_7(input_pixel_7[23:16]),
-        .input_pixel_8(input_pixel_8[23:16]),
-        .input_pixel_9(input_pixel_9[23:16]),
+        .input_pixel_1(input_pixel_1[23:16]), .input_pixel_2(input_pixel_2[23:16]), .input_pixel_3(input_pixel_3[23:16]),
+        .input_pixel_4(input_pixel_4[23:16]), .input_pixel_5(input_pixel_5[23:16]), .input_pixel_6(input_pixel_6[23:16]),
+        .input_pixel_7(input_pixel_7[23:16]), .input_pixel_8(input_pixel_8[23:16]), .input_pixel_9(input_pixel_9[23:16]),
         
         .minimum_pixel(minimum_red)
     );
     
     ALE_Minimum_9 Min_Green (
-        .input_pixel_1(input_pixel_1[15:8]),
-        .input_pixel_2(input_pixel_2[15:8]),
-        .input_pixel_3(input_pixel_3[15:8]),
-        .input_pixel_4(input_pixel_4[15:8]),
-        .input_pixel_5(input_pixel_5[15:8]),
-        .input_pixel_6(input_pixel_6[15:8]),
-        .input_pixel_7(input_pixel_7[15:8]),
-        .input_pixel_8(input_pixel_8[15:8]),
-        .input_pixel_9(input_pixel_9[15:8]),
+        .input_pixel_1(input_pixel_1[15:8]), .input_pixel_2(input_pixel_2[15:8]), .input_pixel_3(input_pixel_3[15:8]),
+        .input_pixel_4(input_pixel_4[15:8]), .input_pixel_5(input_pixel_5[15:8]), .input_pixel_6(input_pixel_6[15:8]),
+        .input_pixel_7(input_pixel_7[15:8]), .input_pixel_8(input_pixel_8[15:8]), .input_pixel_9(input_pixel_9[15:8]),
         
         .minimum_pixel(minimum_green)
     );
     
     ALE_Minimum_9 Min_Blue (
-        .input_pixel_1(input_pixel_1[7:0]),
-        .input_pixel_2(input_pixel_2[7:0]),
-        .input_pixel_3(input_pixel_3[7:0]),
-        .input_pixel_4(input_pixel_4[7:0]),
-        .input_pixel_5(input_pixel_5[7:0]),
-        .input_pixel_6(input_pixel_6[7:0]),
-        .input_pixel_7(input_pixel_7[7:0]),
-        .input_pixel_8(input_pixel_8[7:0]),
-        .input_pixel_9(input_pixel_9[7:0]),
+        .input_pixel_1(input_pixel_1[7:0]), .input_pixel_2(input_pixel_2[7:0]), .input_pixel_3(input_pixel_3[7:0]),
+        .input_pixel_4(input_pixel_4[7:0]), .input_pixel_5(input_pixel_5[7:0]), .input_pixel_6(input_pixel_6[7:0]),
+        .input_pixel_7(input_pixel_7[7:0]), .input_pixel_8(input_pixel_8[7:0]), .input_pixel_9(input_pixel_9[7:0]),
         
         .minimum_pixel(minimum_blue)
     );
     
     // Calculate minimum among the three channels to get Dark Channel
-    ALE_Minimum_3 Dark_Channel(
+    ALE_Minimum_3 Dark_Channel (
         .R(minimum_red_P),
         .G(minimum_green_P), 
         .B(minimum_blue_P),
@@ -188,20 +167,20 @@ module ALE(
         .minimum(Dark_channel)
     );
     
-    // Look-Up Tables to output the reciprocal of the Atmospheric Light value in Q0.16 format
-    ATM_LUT Inverse_Red(
+    // Look-Up Tables to output the reciprocal of the Atmospheric Light values in Q0.16 format
+    ATM_LUT Inverse_Red (
         .in_val(Dark_channel_Red),
         
         .out_val(LUT_Inv_AR)
     );
     
-    ATM_LUT Inverse_Green(
+    ATM_LUT Inverse_Green (
         .in_val(Dark_channel_Green),
         
         .out_val(LUT_Inv_AG)
     );
     
-    ATM_LUT Inverse_Blue(
+    ATM_LUT Inverse_Blue (
         .in_val(Dark_channel_Blue),
         
         .out_val(LUT_Inv_AB)
