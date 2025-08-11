@@ -1,4 +1,4 @@
-module WindowGenerator(
+module WindowGenerator (
     input             clk,
     input             rst,
     
