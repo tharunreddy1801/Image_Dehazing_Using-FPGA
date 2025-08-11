@@ -1,7 +1,7 @@
 // Multiplexer to choose minimum Filtered Pixel Value
-module Mux_1(
-    input [7:0]  a, b, c,
-    input [1:0]  sel,
+module Mux_1 (
+    input  [7:0] a, b, c,
+    input  [1:0] sel,
     
     output [7:0] out
 );
@@ -15,8 +15,8 @@ endmodule
 
 // Multiplexer to choose minimum Atmospheric Light Value
 module Mux_2(
-    input [15:0]  a, b, c,
-    input [1:0]   sel,
+    input  [15:0] a, b, c,
+    input  [1:0]  sel,
     
     output [15:0] out
 );
