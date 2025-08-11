@@ -1,13 +1,17 @@
-module Saturation_Correction_Multiplier(
-    input  [15:0] x1,       // Ac^0.3 in Q8.8 format
-    input  [15:0] x2,       // Jc^0.7 in Q8.8 format
-    output [7:0]  result    // Final 8-bit saturation corrected pixel
+// Compute Ac^β * Jc^(1-β)
+module Saturation_Correction_Multiplier (
+    input  [15:0] x1,       // Q3.13 format
+    input  [15:0] x2,       // Q6.10 format
+    output  [7:0] result    // Unsigned 8-bit output
 );
-
-    // Q8.8 * Q8.8 = Q16.16 result
+    
+    // Q3.13 * Q6.10 = Q9.23
     wire [31:0] mult_result = x1 * x2;
-
-    // Extract the integer part from the Q16.16 fixed-point result
-    assign result = mult_result[23:16];  // Rounding can be added if needed
-
+    
+    // Trim off fractional bits
+    wire [8:0] int_val = mult_result[31:23];
+    
+    // Scale down to 8 bit value
+    assign result = (int_val > 9'd255) ? 8'd255 : int_val[7:0];
+    
 endmodule
