@@ -1,5 +1,5 @@
 // Find the dark channel
-module ALE_Minimum_3(
+module ALE_Minimum_3 (
     input  [7:0] R,
     input  [7:0] G,
     input  [7:0] B,
