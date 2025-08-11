@@ -1,15 +1,15 @@
+// Compute ω * Pc / Ac
 module Multiplier (
-    input clk,
-    input rst,
-    input  [15:0] Ac_Inv, // Inverted Atmospheric Light value in Q0.16 format
+    input         clk,
+    input         rst,
+    
+    input  [15:0] Ac_Inv, // Scaled Inverted Atmospheric Light value in Q0.16 format (ω * 1/Ac) 
     input  [7:0]  Pc,     // Edge Detection Filter result
-    output [15:0] product // OMEGA * min(Pc / Ac) ; c ∈ {R, G, B} in Q0.16 format
+    
+    output [15:0] product // ω * min(Pc / Ac) ; c ∈ {R, G, B} in Q0.16 format
 );
-
-    parameter [15:0] MAX_OUTPUT = 16'd47415;   // 0.725 in Q0.16
     
-    wire [23:0] unscaled_product;
-    
+    // Pipeline registers
     reg [15:0] Ac_Inv_P;
     reg [7:0]  Pc_P;
     
@@ -25,15 +25,8 @@ module Multiplier (
         end
     end
     
-    assign unscaled_product = Ac_Inv_P * Pc_P;
+    wire [23:0] result = Ac_Inv_P * Pc_P; // Q8.16
     
-    // Combinational logic for OMEGA scaling
-    wire [27:0] pre_scaled_product = (unscaled_product << 4) - unscaled_product;
-    wire [23:0] scaled_product = pre_scaled_product >> 4;
-    wire [15:0] result = scaled_product[15:0];
-    
-    // Overflow detection and output
-    wire is_gt_one = (unscaled_product[23:16] != 0);
-    assign product = is_gt_one ? MAX_OUTPUT : result;
+    assign product = result[15:0]; // Scale down to Q0.16 and eliminate overflow
     
 endmodule
