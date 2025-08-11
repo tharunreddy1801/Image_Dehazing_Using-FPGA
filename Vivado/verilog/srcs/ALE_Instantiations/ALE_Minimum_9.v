@@ -1,5 +1,5 @@
 // Find the minimum of each color channel inputs
-module ALE_Minimum_9(
+module ALE_Minimum_9 (
     input [7:0]  input_pixel_1,
     input [7:0]  input_pixel_2,
     input [7:0]  input_pixel_3,
