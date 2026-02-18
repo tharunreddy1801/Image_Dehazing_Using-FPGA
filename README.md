@@ -1,6 +1,10 @@
 # 🌫️ Real-Time Accelerated Image Dehazing Using FPGA
 
  ![License: BSD-3-Clause](https://img.shields.io/badge/License-BSD--3--Clause-00008B.svg)![HDL](https://img.shields.io/badge/HDL-Verilog-informational) ![Toolchain](https://img.shields.io/badge/Tools-Vivado%20%7C%20Vitis%20%7C%20MATLAB-blue)
+ 
+Paper status: Accepted and presented at the IFIP IoT Conference, November 2025. Manuscript accepted for publication in Springer proceedings. Published in Springer IFIP IoT 2025 Proceedings. DOI: xxxx
+
+This repository is made public solely for academic evaluation and review. All rights are reserved. No permission is granted to copy, modify, distribute, publish, or use this code or accompanying materials, in whole or in part, for any purpose without the explicit written consent of the author.
 
 ##  Overview
 
